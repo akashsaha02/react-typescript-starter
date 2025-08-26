@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
 
             <Popover>
               <PopoverTrigger>
-                <UserAvatar userName="Mahim" />
+                <UserAvatar userName="Akash" />
               </PopoverTrigger>
               <PopoverContent className="mr-3 bg-website-color-darkGray border-none text-white">
                 <Button
