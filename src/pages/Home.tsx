@@ -2,13 +2,11 @@ import CommonWrapper from "../common/CommonWrapper";
 
 const Home = () => {
   return (
-    <CommonWrapper>
-      <div className="h-screen bg-website-color-lightGreen">
-        <div className="flex flex-col items-center justify-center min-h-screen ">
-          Home
-        </div>
-      </div>
-    </CommonWrapper>
+    <div className="bg-gray-50 min-h-screen">
+      <CommonWrapper>
+        <h1>Home</h1>
+      </CommonWrapper>
+    </div>
   );
 };
 
