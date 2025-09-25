@@ -1,4 +1,3 @@
-import UserAvatar from "@/ui/UserAvatar";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -7,65 +6,56 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { logout } from "@/store/Slices/AuthSlice/authSlice";
+import { logout } from "@/store/features/auth/auth.slice";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
+  const user = useAppSelector((state) => state?.auth?.user);
   const dispatch = useAppDispatch();
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
   };
 
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/services", label: "Services" },
+    { to: "/contact", label: "Contact" },
+  ];
+
   return (
     <nav className="bg-website-color-green shadow-lg">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="text-white text-2xl font-bold">
-              MyApp
-            </Link>
-          </div>
+          <Link to="/" className="text-white text-2xl font-bold">
+            MyApp
+          </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4">
-            <Link
-              to="/"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Contact
-            </Link>
+          <div className="hidden md:flex items-center space-x-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+              >
+                {link.label}
+              </Link>
+            ))}
 
             <Popover>
-              <PopoverTrigger>
-                <UserAvatar userName="Akash" />
+              <PopoverTrigger asChild>
+                <Avatar className="cursor-pointer">
+                  <AvatarFallback>
+                    {user?.name?.[0] || "U"}
+                  </AvatarFallback>
+                </Avatar>
               </PopoverTrigger>
               <PopoverContent className="mr-3 bg-website-color-darkGray border-none text-white">
                 <Button
@@ -81,7 +71,7 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
-              onClick={toggleMenu}
+              onClick={() => setIsOpen((prev) => !prev)}
               type="button"
               className="text-white hover:text-gray-300 focus:outline-none"
             >
@@ -114,33 +104,16 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="md:hidden px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          {navLinks.map((link) => (
             <Link
-              to="/"
+              key={link.to}
+              to={link.to}
               className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
             >
-              Home
+              {link.label}
             </Link>
-            <Link
-              to="/about"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Contact
-            </Link>
-          </div>
+          ))}
         </div>
       )}
     </nav>

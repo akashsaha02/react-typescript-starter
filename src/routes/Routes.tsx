@@ -8,7 +8,6 @@ import AdminRoute from "./AdminRoutes";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
-import Form from "@/pages/Form";
 import Services from "@/pages/Services";
 
 const routes = createBrowserRouter([
@@ -31,10 +30,6 @@ const routes = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
-      },
-      {
-        path: "/form",
-        element: <Form />,
       },
       {
         path: "/login",
