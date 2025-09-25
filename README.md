@@ -1,55 +1,150 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ⚡ React + TypeScript + Redux Starter
 
-Currently, two official plugins are available:
+A modern starter template for building scalable React applications with **TypeScript** and **Redux Toolkit**.  
+This boilerplate includes pre-configured state management, project structure, and UI-ready setup — so you can focus on building features faster.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **React 18** with **TypeScript** for type-safety
+- 🎯 **Redux Toolkit** for state management
+- 🔐 **Auth Slice** with demo user & token handling
+- 🛠️ Pre-configured **React Router**
+- 🎨 **TailwindCSS** ready for styling
+- ✅ ESLint & Prettier setup for clean code
+- 📂 Scalable project structure
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 📂 Project Structure
+
+````
+
+src/
+│── app/
+│   
+│── store/
+│   ├── store.ts                # Redux store setup
+│   ├── hook.ts                 # Typed hooks for dispatch & selector
+│   └── features/
+│       └── auth/
+│           ├── auth.slice.ts   # Auth slice (user, token, logout)
+│
+│── components/
+│   └── ui/                     # Reusable UI components from ShadCN UI (Avatar, Button, etc.)
+│
+│── pages/
+│   ├── Home.tsx
+│   ├── About.tsx
+│   └── ...
+│
+│── types/
+│   └── user.ts                  # User type definitions
+│
+└── main.tsx              # App entry point
+
+````
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/react-ts-redux-starter.git
+cd react-ts-redux-starter
+````
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+# or
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3️⃣ Start the development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
-# react-typescript-starter
+
+### 4️⃣ Build for production
+
+```bash
+npm run build
+```
+
+---
+
+## 🔑 Auth Slice Example
+
+The starter includes an **auth slice** with a static demo user:
+
+```ts
+const demoUser: TUser = {
+  id: "12345",
+  email: "demo.user@example.com",
+  fullName: "Demo User",
+  role: "USER",
+  isVerified: true,
+  isActive: true,
+  isDeleted: false,
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  deletedAt: null,
+  profilePhoto: "https://ui-avatars.com/api/?name=Demo+User&background=random",
+};
+```
+
+👉 You can use `useAppSelector((state) => state.auth.user)` to access the logged-in user anywhere in your app.
+
+---
+
+## 🛠️ Available Scripts
+
+| Script            | Description                      |
+| ----------------- | -------------------------------- |
+| `npm run dev`     | Start development server         |
+| `npm run build`   | Build for production             |
+| `npm run lint`    | Run ESLint checks                |
+| `npm run preview` | Preview production build locally |
+
+---
+
+## 🌟 Future Improvements
+
+* 🔄 Add **RTK Query** for API integration
+* 🔑 JWT-based **Authentication flow**
+* 🌍 Dark/Light theme support
+* 🧪 Unit testing with Jest + React Testing Library
+
+---
+
+## 🤝 Contributing
+
+1. Fork this repo
+2. Create a new branch (`feature/your-feature`)
+3. Commit your changes
+4. Push to your branch and open a PR 🎉
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** – feel free to use and modify for your projects.
+
+---
+
+### 💡 Quick Start
+
+```bash
+npx create-react-app my-app --template typescript
+```
+
+Or simply clone this starter and start building 🚀
+
+
+
