@@ -13,7 +13,7 @@ This boilerplate includes pre-configured state management, project structure, an
 - 🔐 **Auth Slice** with demo user & token handling
 - 🛠️ Pre-configured **React Router**
 - 🎨 **TailwindCSS** ready for styling
-- ✅ ESLint & Prettier setup for clean code
+- ✅ ESLint & Prettier setup for clean code.
 - 📂 Scalable project structure
 
 ---
